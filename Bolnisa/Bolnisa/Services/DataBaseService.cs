@@ -1,16 +1,11 @@
 ﻿using Bolnisa.Database;
 using Bolnisa.Models;
-using Bolnisa.Database;
-using Bolnisa.Models;
 using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
 
 namespace Bolnisa.Services
 {
     public class DatabaseService
     {
-        // Auth
         public static User GetUser(string login, string password)
         {
             var query = "SELECT Id, Login, Password, Role, FullName FROM Users WHERE Login = @login AND Password = @password";
@@ -43,7 +38,6 @@ namespace Bolnisa.Services
             return user;
         }
 
-        // Patients
         public static List<Patient> GetAllPatients()
         {
             var patients = new List<Patient>();
@@ -161,7 +155,7 @@ namespace Bolnisa.Services
             });
         }
 
-        // Doctors
+       
         public static List<Doctor> GetAllDoctors()
         {
             var doctors = new List<Doctor>();
@@ -190,7 +184,7 @@ namespace Bolnisa.Services
             return doctors;
         }
 
-        // Appointments
+
         public static List<Appointment> GetTodayAppointments()
         {
             var appointments = new List<Appointment>();
@@ -302,7 +296,6 @@ namespace Bolnisa.Services
 
         public static void CompleteAppointmentAndAddToHistory(Appointment appointment, string diagnosis)
         {
-            // Добавляем в историю посещений
             var historyQuery = @"
                 INSERT INTO VisitHistory (PatientId, DoctorId, VisitDate, VisitTime, Reason, Diagnosis) 
                 VALUES (@patientId, @doctorId, @date, @time, @reason, @diagnosis)";
@@ -317,7 +310,6 @@ namespace Bolnisa.Services
                 cmd.Parameters.AddWithValue("@diagnosis", diagnosis ?? (object)DBNull.Value);
             });
 
-            // Обновляем статус приёма
             UpdateAppointmentStatus(appointment.Id, "Завершён");
         }
 

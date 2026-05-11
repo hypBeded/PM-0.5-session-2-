@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnisa.Views"
         mc:Ignorable="d"
-         Title="Окно Мед регистратор - Мед регистратор" Height="600" Width="1000"
+         Title="Окно Мед регистратор" Height="600" Width="1000"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Верхняя панель -->
+
         <Border Background="#2E86C1" Padding="10" Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="Мед Регистратор" Foreground="White" FontSize="16"
@@ -23,14 +23,14 @@
             </StackPanel>
         </Border>
 
-        <!-- Основная область -->
+ 
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Боковое меню -->
+
             <Border Background="#F0F0F0" Margin="0,0,10,0" CornerRadius="5">
                 <StackPanel Margin="10">
                     <Button Name="btnPatientsList" Content="Список пациентов"
@@ -48,7 +48,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Контентная область -->
+
             <Border Grid.Column="1" Background="White" CornerRadius="5"
                     BorderBrush="#DDD" BorderThickness="1">
                 <Grid Name="contentGrid">

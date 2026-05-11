@@ -21,8 +21,6 @@ namespace Bolnisa
         public MainWindow()
         {
             InitializeComponent();
-            // Инициализируем базу данных при запуске
-            Database.DatabaseInitializer.Initialize();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
