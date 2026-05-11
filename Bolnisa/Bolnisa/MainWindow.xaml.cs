@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Bolnisa.Views;
+using Bolnisa.Services;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Bolnisa.Views;
 
 namespace Bolnisa
 {
@@ -20,13 +21,14 @@ namespace Bolnisa
         public MainWindow()
         {
             InitializeComponent();
+            // Инициализируем базу данных при запуске
+            Database.DatabaseInitializer.Initialize();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string login = txtLogin.Text;
             string password = txtPassword.Password;
-            string role = (cmbRole.SelectedItem as ComboBoxItem)?.Content.ToString();
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -34,26 +36,29 @@ namespace Bolnisa
                 return;
             }
 
-            // Заглушка авторизации - в реальном проекте проверка через БД
-            // Логин: admin любой пароль для входа
-            if (login == "admin")
+            var user = DatabaseService.GetUser(login, password);
+
+            if (user != null)
             {
-                switch (role)
+                switch (user.Role)
                 {
-                    case "Мед Регистратор":
-                     var regWindow = new RegWindow();
-                     regWindow.Show();
-                     this.Close();
+                    case "Регистратор":
+                        var regWindow = new RegWindow(user);
+                        regWindow.Show();
+                        this.Close();
                         break;
                     case "Врач":
-                     var doctorWindow = new DoctorWindow();
-                     doctorWindow.Show();
-                      this.Close();
+                        var doctorWindow = new DoctorWindow(user);
+                        doctorWindow.Show();
+                        this.Close();
                         break;
-                    case "Мед Сестра":
-                     var nurseWindow = new NurseWindow();
-                      nurseWindow.Show();
-                     this.Close();
+                    case "Медсестра":
+                        var nurseWindow = new NurseWindow(user);
+                        nurseWindow.Show();
+                        this.Close();
+                        break;
+                    default:
+                        ShowError("Неизвестная роль пользователя");
                         break;
                 }
             }
