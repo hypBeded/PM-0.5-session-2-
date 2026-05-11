@@ -1,0 +1,62 @@
+﻿<Window x:Class="Bolnisa.Views.RegWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bolnisa.Views"
+        mc:Ignorable="d"
+         Title="Окно Мед регистратор - Мед регистратор" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Border Background="#2E86C1" Padding="10" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Мед Регистратор" Foreground="White" FontSize="16"
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <Button Name="btnLogout" Content="Выход" Click="btnLogout_Click"
+                        Width="80" Background="Red"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Основная область -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Боковое меню -->
+            <Border Background="#F0F0F0" Margin="0,0,10,0" CornerRadius="5">
+                <StackPanel Margin="10">
+                    <Button Name="btnPatientsList" Content="Список пациентов"
+                            Click="btnPatientsList_Click" Width="Auto"/>
+                    <Button Name="btnTodayAppointments" Content="Записи на сегодня"
+                            Click="btnTodayAppointments_Click" Width="Auto"/>
+                    <Button Name="btnAddAppointment" Content="Добавить запись"
+                            Click="btnAddAppointment_Click" Width="Auto"/>
+                    <Button Name="btnAddPatient" Content="Добавление пациента"
+                            Click="btnAddPatient_Click" Width="Auto"/>
+                    <Button Name="btnDoctorsList" Content="Список врачей"
+                            Click="btnDoctorsList_Click" Width="Auto"/>
+                    <Button Name="btnHistory" Content="История обращений"
+                            Click="btnHistory_Click" Width="Auto"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Контентная область -->
+            <Border Grid.Column="1" Background="White" CornerRadius="5"
+                    BorderBrush="#DDD" BorderThickness="1">
+                <Grid Name="contentGrid">
+                    <TextBlock Text="Выберите действие из меню" FontSize="18"
+                               Foreground="#888" VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

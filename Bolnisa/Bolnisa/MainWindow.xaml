@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bolnisa"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+       Title="Авторизация - Медицинская система" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#F5F5F5">
+        <Border Background="White" CornerRadius="10" Width="350" Height="400"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#2E86C1"/>
+            </Border.BorderBrush>
+            <Border.BorderThickness>
+                <Thickness>2</Thickness>
+            </Border.BorderThickness>
+            <StackPanel Margin="20">
+                <TextBlock Text="Авторизация"
+                           FontSize="14" FontWeight="Bold" TextAlignment="Center"
+                           TextWrapping="Wrap" Margin="0,0,0,20" Foreground="#2E86C1"/>
 
+                <TextBlock Text="Логин" Margin="0,5"/>
+                <TextBox Name="txtLogin" Height="35"/>
+
+                <TextBlock Text="Пароль" Margin="0,15,0,5"/>
+                <PasswordBox Name="txtPassword" Height="35"/>
+
+                <ComboBox Name="cmbRole" Height="35" Margin="0,15,0,5" SelectedIndex="0">
+                    <ComboBoxItem Content="Мед Регистратор"/>
+                    <ComboBoxItem Content="Врач"/>
+                    <ComboBoxItem Content="Мед Сестра"/>
+                </ComboBox>
+
+                <Button Name="btnLogin" Content="Вход" Click="btnLogin_Click"
+                        Width="150" Height="40" Margin="0,20,0,0"
+                        HorizontalAlignment="Center"/>
+
+                <TextBlock Name="txtError" Foreground="Red" TextAlignment="Center"
+                           Margin="0,10" Visibility="Collapsed"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
